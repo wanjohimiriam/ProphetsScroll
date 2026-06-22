@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- ═══════════════════════════════════════════════════
+         BRAND / LOGO COLORS  (same in both themes)
+    ═══════════════════════════════════════════════════ -->
+    <color name="gold_bright">#FFD700</color>
+    <color name="gold_primary">#DAA520</color>
+    <color name="gold_dark">#B8860B</color>
+    <color name="bronze">#CD7F32</color>
+    <color name="copper">#B87333</color>
+    <color name="amber_glow">#FF8C00</color>
+    <color name="amber_light">#FFA500</color>
+
+    <!-- Parchment -->
+    <color name="parchment_light">#F5DEB3</color>
+    <color name="parchment">#D2B48C</color>
+    <color name="parchment_dark">#C19A6B</color>
+
+    <!-- Status -->
+    <color name="success_green">#4CAF50</color>
+    <color name="active_green">#2E7D32</color>
+    <color name="error_red">#E24B4A</color>
+    <color name="warning_orange">#FF9800</color>
+
+    <!-- ═══════════════════════════════════════════════════
+         LIGHT THEME SEMANTIC TOKENS
+         (override these in res/values-night/colors.xml)
+    ═══════════════════════════════════════════════════ -->
+
+    <!-- Page / surface -->
+    <color name="home_background">#F5F1EA</color>
+    <color name="feature_card_bg">#FFFFFF</color>
+    <color name="card_border">#E8DCC8</color>
+    <color name="icon_well_bg">#EDE0C4</color>
+
+    <!-- Text -->
+    <color name="text_primary">#2A1F0E</color>
+    <color name="text_secondary">#5C4A2A</color>
+    <color name="text_hint">#8B7355</color>
+    <color name="text_white">#FFFFFF</color>
+    <color name="text_white_secondary">#FFFFFFB3</color>
+
+    <!-- Bottom nav -->
+    <color name="bottom_nav_tint">#B8860B</color>         <!-- active gold -->
+    <color name="bottom_nav_inactive">#8B7355</color>
+
+    <!-- Feature icon wells -->
+    <color name="icon_devotionals">#EDE0C4</color>        <!-- warm tan -->
+    <color name="icon_bible">#E8F5E9</color>              <!-- soft green -->
+    <color name="icon_worship">#FFF0F5</color>            <!-- blush -->
+    <color name="icon_notes">#EDE7F6</color>              <!-- soft purple -->
+
+    <!-- Feature icon tints -->
+    <color name="icon_devotionals_tint">#B8860B</color>
+    <color name="icon_bible_tint">#2E7D32</color>
+    <color name="icon_worship_tint">#AD1457</color>
+    <color name="icon_notes_tint">#4527A0</color>
+
+    <!-- Badge: Active -->
+    <color name="badge_active_bg">#E8F5E9</color>
+    <color name="badge_active_text">#2E7D32</color>
+    <color name="badge_active_border">#2E7D32</color>
+
+    <!-- Badge: Soon -->
+    <color name="badge_soon_bg">#FFF8E1</color>
+    <color name="badge_soon_text">#B8860B</color>
+
+    <!-- Gold text helpers -->
+    <color name="text_gold">#DAA520</color>
+    <color name="text_gold_light">#FFD700</color>
+    <color name="text_bronze">#CD7F32</color>
+
+    <!-- Material Design 3 -->
+    <color name="md_theme_primary">#B8860B</color>
+    <color name="md_theme_on_primary">#FFFFFF</color>
+    <color name="md_theme_surface">#F5F1EA</color>
+    <color name="md_theme_on_surface">#2A1F0E</color>
+    <color name="md_theme_error">#E24B4A</color>
+
+    <!-- LEGACY GRADIENT NAMES — kept for backward compatibility with
+         any existing layouts/drawables that still reference them -->
+    <color name="primary_purple_start">#DAA520</color>
+    <color name="primary_purple_end">#B8860B</color>
+    <color name="primary_green_start">#1D9E75</color>
+    <color name="primary_green_end">#0F6E56</color>
+    <color name="primary_coral_start">#E24B4A</color>
+    <color name="primary_coral_end">#C13432</color>
+    <color name="primary_pink_start">#993556</color>
+    <color name="primary_pink_end">#742142</color>
+
+    <!-- Misc legacy names still referenced in other layouts -->
+    <color name="white">#FFFFFF</color>
+    <color name="background_primary">#FFFFFF</color>
+    <color name="background_secondary">#F5F1EA</color>
+    <color name="divider">#E8DCC8</color>
+    <color name="divider_dark">#5C4A2A</color>
+    <color name="border_gold">#DAA520</color>
+    <color name="border_dark">#5C4A2A</color>
+    <color name="overlay_dark">#80000000</color>
+    <color name="overlay_light">#30000000</color>
+    <!-- ONBOARDING SCREEN COLORS -->
+    <color name="onboarding_background">#F5F1EA</color>
+    <color name="onboarding_subtitle">#8B7355</color>
+    <color name="logo_background">#E8DCC8</color>
+
+    <!-- FEATURE CARDS (Onboarding / Light Mode) -->
+    <color name="feature_card_background">#FFFFFF</color>
+    <color name="feature_card_border">#E8DCC8</color>
+    <color name="feature_text_title">#5C4A3A</color>
+    <color name="feature_text_subtitle">#8B7355</color>
+
+    <!-- ICON BACKGROUNDS -->
+    <color name="icon_bg_gold">#FDF8F3</color>
+    <color name="border_tertiary">#1A000000</color>
+</resources>

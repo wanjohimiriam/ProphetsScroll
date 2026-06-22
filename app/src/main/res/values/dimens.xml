@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Spacing -->
+    <dimen name="spacing_tiny">4dp</dimen>
+    <dimen name="spacing_small">8dp</dimen>
+    <dimen name="spacing_medium">12dp</dimen>
+    <dimen name="spacing_standard">16dp</dimen>
+    <dimen name="spacing_large">24dp</dimen>
+    <dimen name="spacing_xlarge">32dp</dimen>
+    <dimen name="spacing_xxlarge">48dp</dimen>
+
+    <!-- Border Radius -->
+    <dimen name="radius_small">4dp</dimen>
+    <dimen name="radius_medium">8dp</dimen>
+    <dimen name="radius_large">12dp</dimen>
+    <dimen name="radius_xlarge">16dp</dimen>
+    <dimen name="radius_circle">50dp</dimen>
+
+    <!-- Text Sizes -->
+    <dimen name="text_tiny">11sp</dimen>
+    <dimen name="text_small">13sp</dimen>
+    <dimen name="text_body">14sp</dimen>
+    <dimen name="text_body_large">16sp</dimen>
+    <dimen name="text_heading_small">18sp</dimen>
+    <dimen name="text_heading_medium">20sp</dimen>
+    <dimen name="text_heading_large">22sp</dimen>
+    <dimen name="text_display">28sp</dimen>
+
+    <!-- Button Heights -->
+    <dimen name="button_height_small">40dp</dimen>
+    <dimen name="button_height_standard">48dp</dimen>
+    <dimen name="button_height_large">56dp</dimen>
+
+    <!-- Input Fields -->
+    <dimen name="input_height">56dp</dimen>
+    <dimen name="input_padding_horizontal">16dp</dimen>
+
+    <!-- Card -->
+    <dimen name="card_padding">16dp</dimen>
+    <dimen name="card_elevation">2dp</dimen>
+
+    <!-- Icon Sizes -->
+    <dimen name="icon_tiny">16dp</dimen>
+    <dimen name="icon_small">24dp</dimen>
+    <dimen name="icon_medium">32dp</dimen>
+    <dimen name="icon_large">48dp</dimen>
+    <dimen name="icon_xlarge">64dp</dimen>
+    <dimen name="icon_xxlarge">96dp</dimen>
+
+    <!-- Illustration Sizes -->
+    <dimen name="illustration_small">120dp</dimen>
+    <dimen name="illustration_medium">180dp</dimen>
+    <dimen name="illustration_large">240dp</dimen>
+
+    <!-- Progress Indicator -->
+    <dimen name="progress_height">4dp</dimen>
+    <dimen name="progress_dot_size">8dp</dimen>
+</resources>

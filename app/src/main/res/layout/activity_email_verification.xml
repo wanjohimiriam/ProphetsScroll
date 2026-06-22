@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_primary"
+    android:padding="@dimen/spacing_large"
+    tools:context=".presentation.auth.EmailVerificationActivity">
+
+    <!-- Email Icon -->
+    <ImageView
+        android:id="@+id/ivEmailIcon"
+        android:layout_width="@dimen/icon_xxlarge"
+        android:layout_height="@dimen/icon_xxlarge"
+        android:layout_marginTop="@dimen/spacing_xxlarge"
+        android:contentDescription="@string/cd_email_icon"
+        android:src="@android:drawable/ic_dialog_email"
+        app:tint="@color/primary_purple_start"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Title -->
+    <TextView
+        android:id="@+id/tvVerificationTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_large"
+        android:fontFamily="sans-serif-medium"
+        android:gravity="center"
+        android:text="@string/verification_title"
+        android:textColor="@color/text_primary"
+        android:textSize="@dimen/text_display"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ivEmailIcon" />
+
+    <!-- Message -->
+    <TextView
+        android:id="@+id/tvVerificationMessage"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_standard"
+        android:gravity="center"
+        android:text="@string/verification_message"
+        android:textColor="@color/text_secondary"
+        android:textSize="@dimen/text_body_large"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvVerificationTitle" />
+
+    <!-- Email Address Card -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardEmail"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_standard"
+        app:cardCornerRadius="@dimen/radius_medium"
+        app:cardElevation="0dp"
+        app:strokeColor="@color/border_tertiary"
+        app:strokeWidth="1dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvVerificationMessage">
+
+        <TextView
+            android:id="@+id/tvUserEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="@dimen/spacing_standard"
+            android:textColor="@color/primary_purple_start"
+            android:textSize="@dimen/text_body_large"
+            android:fontFamily="sans-serif-medium"
+            tools:text="user@example.com" />
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- Instruction -->
+    <TextView
+        android:id="@+id/tvVerificationInstruction"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_large"
+        android:gravity="center"
+        android:text="@string/verification_instruction"
+        android:textColor="@color/text_secondary"
+        android:textSize="@dimen/text_body"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cardEmail" />
+
+    <!-- Open Email App Button -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnOpenEmailApp"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/button_height_large"
+        android:layout_marginTop="@dimen/spacing_xlarge"
+        android:background="@drawable/bg_button_primary"
+        android:fontFamily="sans-serif-medium"
+        android:text="@string/btn_open_email_app"
+        android:textAllCaps="false"
+        android:textColor="@color/text_white"
+        android:textSize="@dimen/text_body_large"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvVerificationInstruction" />
+
+    <!-- Resend Email Button -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnResendEmail"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/button_height_standard"
+        android:layout_marginTop="@dimen/spacing_standard"
+        android:background="@drawable/bg_button_outlined"
+        android:fontFamily="sans-serif-medium"
+        android:text="@string/btn_resend_email"
+        android:textAllCaps="false"
+        android:textColor="@color/text_primary"
+        android:textSize="@dimen/text_body_large"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnOpenEmailApp" />
+
+    <!-- Resend Timer -->
+    <TextView
+        android:id="@+id/tvResendTimer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_small"
+        android:textColor="@color/text_secondary"
+        android:textSize="@dimen/text_small"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnResendEmail"
+        tools:text="Resend in 30s"
+        tools:visibility="visible" />
+
+    <!-- Continue as Guest -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnContinueAsGuest"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/spacing_large"
+        android:text="@string/btn_continue_as_guest"
+        android:textColor="@color/text_secondary"
+        style="@style/Widget.Material3.Button.TextButton"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

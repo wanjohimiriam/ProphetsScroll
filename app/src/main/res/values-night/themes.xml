@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Dark theme overrides -->
+    <style name="Theme.Prophets_Scroll" parent="Theme.MaterialComponents.DayNight.Bridge">
+        <item name="colorPrimary">@color/gold_primary</item>
+        <item name="colorPrimaryVariant">@color/gold_dark</item>
+        <item name="colorOnPrimary">@color/text_white</item>
+
+        <item name="colorSecondary">@color/bronze</item>
+        <item name="colorOnSecondary">@color/text_white</item>
+
+        <item name="android:windowBackground">@color/home_background</item>
+        <item name="android:statusBarColor">@color/home_background</item>
+        <item name="android:navigationBarColor">@color/home_background</item>
+        <item name="android:windowLightStatusBar">false</item>
+
+        <item name="colorSurface">@color/feature_card_bg</item>
+        <item name="colorOnSurface">@color/text_primary</item>
+        <item name="colorOnSurfaceVariant">@color/text_hint</item>
+        <item name="android:colorBackground">@color/home_background</item>
+        <item name="colorOnBackground">@color/text_primary</item>
+
+        <item name="colorError">@color/error_red</item>
+        <item name="colorOnError">@color/text_white</item>
+
+        <item name="actionBarStyle">@style/Prophets_Scroll.AppBar</item>
+        <item name="bottomNavigationStyle">@style/Prophets_Scroll.BottomNav</item>
+        <item name="materialCardViewStyle">@style/Prophets_Scroll.Card</item>
+        <item name="materialButtonStyle">@style/Prophets_Scroll.Button</item>
+    </style>
+
+</resources>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Light theme  → warm gold gradient (matches logo lettering)
+    Dark theme   → deep blue-purple gradient (original)
+
+    We use a layer-list so the gradient still renders as a shape.
+    Swap start/end colors via theme attributes if you want a single
+    file; or keep two files under drawable/ and drawable-night/.
+-->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+
+    <gradient
+        android:startColor="#B8860B"
+        android:centerColor="#DAA520"
+        android:endColor="#CD7F32"
+        android:angle="135"
+        android:type="linear" />
+
+    <corners android:radius="20dp" />
+
+</shape>

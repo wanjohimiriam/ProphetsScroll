@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Spiritual Hub</string>
+
+    <!-- Onboarding/Welcome -->
+    <string name="welcome_title">The Prophets Scroll</string>
+    <string name="welcome_subtitle">Your daily companion for spiritual growth and inspiration</string>
+    <string name="welcome_benefit_1">📖 Daily devotionals in English &amp; Kiswahili</string>
+    <string name="welcome_benefit_2">🙏 Personalized prayer reminders</string>
+    <string name="welcome_benefit_3">💬 Community of faith-driven believers</string>
+    <string name="welcome_benefit_4">📱 Offline access to saved content</string>
+    <string name="btn_get_started">Get Started</string>
+    <string name="btn_skip">Skip</string>
+    <string name="btn_continue_as_guest">Continue as Guest</string>
+
+    <!-- Sign In -->
+    <string name="sign_in_title">Welcome Back</string>
+    <string name="sign_in_subtitle">Sign in to continue your journey</string>
+    <string name="label_email">Email Address</string>
+    <string name="label_password">Password</string>
+    <string name="hint_email">Enter your email</string>
+    <string name="hint_password">Enter your password</string>
+    <string name="btn_sign_in">Sign In</string>
+    <string name="btn_forgot_password">Forgot Password?</string>
+    <string name="divider_or">OR</string>
+    <string name="btn_continue_with_google">Continue with Google</string>
+    <string name="text_no_account">Don\'t have an account?</string>
+    <string name="btn_sign_up">Sign Up</string>
+
+    <!-- Sign Up -->
+    <string name="sign_up_title">Create Account</string>
+    <string name="sign_up_subtitle">Join our community today</string>
+    <string name="label_name">Full Name</string>
+    <string name="label_confirm_password">Confirm Password</string>
+    <string name="hint_name">Enter your full name</string>
+    <string name="hint_confirm_password">Re-enter your password</string>
+    <string name="checkbox_terms">I agree to the Terms &amp; Conditions and Privacy Policy</string>
+    <string name="btn_create_account">Create Account</string>
+    <string name="text_have_account">Already have an account?</string>
+    <string name="password_strength_weak">Weak</string>
+    <string name="password_strength_medium">Medium</string>
+    <string name="password_strength_strong">Strong</string>
+
+    <!-- Email Verification -->
+    <string name="verification_title">Check Your Email</string>
+    <string name="verification_message">We\'ve sent a verification link to</string>
+    <string name="verification_instruction">Please check your email and click the verification link to continue</string>
+    <string name="btn_resend_email">Resend Email</string>
+    <string name="btn_open_email_app">Open Email App</string>
+    <string name="text_resend_timer">Resend in %1$ds</string>
+
+    <!-- Personalization Step 1 -->
+    <string name="personalization_step_1_title">Choose Your Interests</string>
+    <string name="personalization_step_1_subtitle">Select at least 3 categories that interest you</string>
+    <string name="progress_step_1">Step 1 of 3</string>
+    <string name="btn_continue">Continue</string>
+
+    <!-- Categories -->
+    <string name="category_faith">Faith</string>
+    <string name="category_hope">Hope</string>
+    <string name="category_love">Love</string>
+    <string name="category_prayer">Prayer</string>
+    <string name="category_wisdom">Wisdom</string>
+    <string name="category_family">Family</string>
+    <string name="category_youth">Youth</string>
+    <string name="category_marriage">Marriage</string>
+    <string name="category_finance">Finance</string>
+    <string name="category_worship">Worship</string>
+    <string name="category_healing">Healing</string>
+    <string name="category_leadership">Leadership</string>
+
+    <!-- Personalization Step 2 -->
+    <string name="personalization_step_2_title">Daily Reminders</string>
+    <string name="personalization_step_2_subtitle">Set up notifications for your devotional time</string>
+    <string name="progress_step_2">Step 2 of 3</string>
+    <string name="label_enable_reminders">Enable daily reminders</string>
+    <string name="label_reminder_time">Reminder time</string>
+    <string name="notification_preview_title">Good morning! ☀️</string>
+    <string name="notification_preview_message">Your daily devotional is ready</string>
+
+    <!-- Setup Complete -->
+    <string name="setup_complete_title">You\'re All Set!</string>
+    <string name="setup_complete_subtitle">Your spiritual journey starts now</string>
+    <string name="setup_complete_feature_1">✅ Personalized content ready</string>
+    <string name="setup_complete_feature_2">✅ Daily reminders activated</string>
+    <string name="setup_complete_feature_3">✅ Community access unlocked</string>
+    <string name="btn_start_exploring">Start Exploring</string>
+
+    <!-- Common -->
+    <string name="error_field_required">This field is required</string>
+    <string name="error_invalid_email">Please enter a valid email address</string>
+    <string name="error_password_too_short">Password must be at least 6 characters</string>
+    <string name="error_passwords_dont_match">Passwords don\'t match</string>
+    <string name="error_network">Network error. Please try again</string>
+    <string name="toast_coming_soon">Coming soon!</string>
+
+    <!-- Content Descriptions -->
+    <string name="cd_app_logo">Spiritual Hub logo</string>
+    <string name="cd_welcome_illustration">Welcome illustration</string>
+    <string name="cd_email_icon">Email verification icon</string>
+    <string name="cd_success_icon">Success icon</string>
+    <string name="cd_category_icon">Category icon</string>
+    <string name="cd_toggle_password_visibility">Toggle password visibility</string>
+</resources>

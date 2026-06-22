@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Base app theme — light -->
+    <style name="Theme.Prophets_Scroll" parent="Theme.MaterialComponents.DayNight.Bridge">
+        <item name="colorPrimary">@color/gold_primary</item>
+        <item name="colorPrimaryVariant">@color/gold_dark</item>
+        <item name="colorOnPrimary">@color/text_white</item>
+
+        <item name="colorSecondary">@color/bronze</item>
+        <item name="colorSecondaryVariant">@color/copper</item>
+        <item name="colorOnSecondary">@color/text_white</item>
+
+        <item name="android:windowBackground">@color/home_background</item>
+        <item name="android:statusBarColor">@color/home_background</item>
+        <item name="android:navigationBarColor">@color/home_background</item>
+        <item name="android:windowLightStatusBar">true</item>
+
+        <item name="colorSurface">@color/feature_card_bg</item>
+        <item name="colorOnSurface">@color/text_primary</item>
+        <item name="colorOnSurfaceVariant">@color/text_hint</item>
+        <item name="android:colorBackground">@color/home_background</item>
+        <item name="colorOnBackground">@color/text_primary</item>
+
+        <item name="colorError">@color/error_red</item>
+        <item name="colorOnError">@color/text_white</item>
+
+        <item name="colorControlNormal">@color/text_secondary</item>
+
+        <!-- Sub-styles — all use Prophets_Scroll prefix -->
+        <item name="actionBarStyle">@style/Prophets_Scroll.AppBar</item>
+        <item name="bottomNavigationStyle">@style/Prophets_Scroll.BottomNav</item>
+        <item name="materialCardViewStyle">@style/Prophets_Scroll.Card</item>
+        <item name="materialButtonStyle">@style/Prophets_Scroll.Button</item>
+        <item name="shapeAppearanceMediumComponent">@style/ShapeAppearance.Prophets_Scroll.Medium</item>
+        <item name="shapeAppearanceLargeComponent">@style/ShapeAppearance.Prophets_Scroll.Large</item>
+    </style>
+
+    <!-- AppBar -->
+    <style name="Prophets_Scroll.AppBar" parent="Widget.MaterialComponents.Toolbar">
+        <item name="android:background">@color/home_background</item>
+        <item name="titleTextColor">@color/text_primary</item>
+        <item name="subtitleTextColor">@color/text_hint</item>
+    </style>
+
+    <!-- Bottom Navigation -->
+    <style name="Prophets_Scroll.BottomNav" parent="Widget.MaterialComponents.BottomNavigationView">
+        <item name="android:background">@color/feature_card_bg</item>
+        <item name="itemIconTint">@color/bottom_nav_tint</item>
+        <item name="itemTextColor">@color/bottom_nav_tint</item>
+        <item name="elevation">8dp</item>
+    </style>
+
+    <!-- Card -->
+    <style name="Prophets_Scroll.Card" parent="Widget.MaterialComponents.CardView">
+        <item name="cardBackgroundColor">@color/feature_card_bg</item>
+        <item name="cardCornerRadius">20dp</item>
+        <item name="cardElevation">0dp</item>
+        <item name="strokeColor">@color/card_border</item>
+        <item name="strokeWidth">1dp</item>
+    </style>
+
+    <!-- Button -->
+    <style name="Prophets_Scroll.Button" parent="Widget.MaterialComponents.Button">
+        <item name="backgroundTint">@color/gold_primary</item>
+        <item name="android:textColor">@color/text_white</item>
+        <item name="cornerRadius">12dp</item>
+    </style>
+
+    <!-- Outlined Button -->
+    <style name="Prophets_Scroll.Button.Outlined" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="strokeColor">@color/gold_primary</item>
+        <item name="cornerRadius">12dp</item>
+    </style>
+
+    <!-- Shapes -->
+    <style name="ShapeAppearance.Prophets_Scroll.Medium" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">12dp</item>
+    </style>
+
+    <style name="ShapeAppearance.Prophets_Scroll.Large" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">20dp</item>
+    </style>
+
+    <!-- Splash -->
+    <style name="Theme.Prophets_Scroll.Splash" parent="Theme.Prophets_Scroll">
+        <item name="android:windowBackground">@color/home_background</item>
+        <item name="android:statusBarColor">@color/home_background</item>
+    </style>
+
+</resources>

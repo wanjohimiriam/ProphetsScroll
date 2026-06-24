@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Navigation Drawer layout.
+    Wrap your existing activity_main.xml content inside this DrawerLayout.
+    The NavView sits at the end (right-to-left: start for LTR locales).
+-->
+<androidx.drawerlayout.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawerLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:openDrawer="start">
+
+    <!--
+        ════════════════════════════════════════
+        MAIN CONTENT  — paste your full
+        activity_main CoordinatorLayout here,
+        or include it via a <include> tag.
+        ════════════════════════════════════════
+    -->
+    <include layout="@layout/content_main" />
+
+    <!--
+        ════════════════════════════════════════
+        NAVIGATION DRAWER PANEL
+        ════════════════════════════════════════
+    -->
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/navView"
+        android:layout_width="300dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:background="@color/feature_card_bg"
+        app:headerLayout="@layout/nav_header_main"
+        app:menu="@menu/drawer_menu"
+        app:itemIconTint="@color/bottom_nav_tint"
+        app:itemTextColor="@color/text_primary"
+        app:itemRippleColor="@color/icon_devotionals" />
+
+</androidx.drawerlayout.widget.DrawerLayout>

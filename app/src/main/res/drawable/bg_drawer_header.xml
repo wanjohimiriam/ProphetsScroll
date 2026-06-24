@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Purple-to-blue gradient matching the drawer header in screenshot -->
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
     android:shape="rectangle">
 
     <gradient
-        android:startColor="#FFFFFF"
-        android:centerColor="#F8F9FA"
-        android:endColor="#F0F2F5"
+        android:startColor="#7C3AED"
+        android:endColor="#3D5AFE"
         android:angle="135"
         android:type="linear" />
-
-    <corners android:radius="20dp" />
 
 </shape>

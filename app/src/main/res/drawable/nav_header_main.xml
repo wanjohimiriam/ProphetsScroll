@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Drawer header — matches your screenshot:
+    purple/blue gradient bg, circle avatar initials, name, email
+-->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="180dp"
+    android:background="@drawable/bg_drawer_header"
+    android:gravity="bottom"
+    android:orientation="vertical"
+    android:padding="20dp">
+
+    <!-- Avatar circle with initials fallback -->
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/ivAvatar"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_marginBottom="12dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_account_circle"
+        app:shapeAppearanceOverlay="@style/CircleImageStyle"
+        android:contentDescription="Profile photo" />
+
+    <!-- Full name -->
+    <TextView
+        android:id="@+id/tvDrawerName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-medium"
+        android:textColor="@color/text_white"
+        android:textSize="18sp"
+        android:text="Miriam Wanjohi" />
+
+    <!-- Email -->
+    <TextView
+        android:id="@+id/tvDrawerEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:textColor="@color/text_white_secondary"
+        android:textSize="13sp"
+        android:text="miriam@example.com" />
+
+</LinearLayout>

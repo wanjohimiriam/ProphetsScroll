@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/nav_features_header"
+        android:title="FEATURES"
+        android:enabled="false" />
+
+    <item
+        android:id="@+id/nav_home"
+        android:icon="@drawable/ic_home"
+        android:title="Home" />
+
+    <item
+        android:id="@+id/nav_devotionals"
+        android:icon="@drawable/ic_book"
+        android:title="Devotionals" />
+
+    <item
+        android:id="@+id/nav_bible"
+        android:icon="@drawable/ic_book"
+        android:title="Bible" />
+
+    <item
+        android:id="@+id/nav_worship"
+        android:icon="@drawable/ic_music"
+        android:title="Worship Music" />
+
+    <item
+        android:id="@+id/nav_notes"
+        android:icon="@drawable/ic_notes"
+        android:title="Prayer Journal" />
+
+    <item
+        android:id="@+id/nav_content_header"
+        android:title="MY CONTENT"
+        android:enabled="false" />
+
+    <item
+        android:id="@+id/nav_favourites"
+        android:icon="@drawable/ic_favorite"
+        android:title="Favorites" />
+
+    <item
+        android:id="@+id/nav_downloads"
+        android:icon="@drawable/ic_download"
+        android:title="Downloads" />
+
+</menu>

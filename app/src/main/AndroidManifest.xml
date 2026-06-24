@@ -62,6 +62,9 @@
         <activity
             android:name=".home.SearchActivity"
             android:theme="@style/Theme.Prophets_Scroll" />
+        <activity
+            android:name=".home.DevotionalDetailActivity"
+            android:theme="@style/Theme.Prophets_Scroll" />
 
     </application>
 

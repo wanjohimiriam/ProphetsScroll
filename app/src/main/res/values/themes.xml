@@ -91,4 +91,18 @@
         <item name="android:statusBarColor">@color/home_background</item>
     </style>
 
+    <style name="CircleImageStyle" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+    </style>
+
+    <!--
+    Add inside res/values/themes.xml before </resources>
+    Used by TabLayout in activity_book_picker.xml
+-->
+    <style name="TabTextMedium" parent="@android:style/TextAppearance">
+        <item name="android:textSize">14sp</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+    </style>
+
 </resources>

@@ -8,6 +8,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.prophets_scroll.home.DevotionalDetailActivity;
 import com.example.prophets_scroll.home.DevotionalsActivity;
 import com.example.prophets_scroll.home.SearchActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -75,8 +76,8 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(this, "Notifications", Toast.LENGTH_SHORT).show());
 
         // Devotional card → Devotionals list
-        cardDevotion.setOnClickListener(v -> openDevotionals());
-        btnReadNow.setOnClickListener(v -> openDevotionals());
+        cardDevotion.setOnClickListener(v -> openDevotionalDetail());
+        btnReadNow.setOnClickListener(v -> openDevotionalDetail());
 
         // Verse of day → Bible (TODO)
         cardVerseOfDay.setOnClickListener(v ->
@@ -128,4 +129,27 @@ public class MainActivity extends AppCompatActivity {
             return false;
         });
     }
+
+    private void openDevotionalDetail() {
+        Intent intent = new Intent(this, DevotionalDetailActivity.class);
+
+        // Pass today's devotional data as extras
+        intent.putExtra(DevotionalDetailActivity.EXTRA_TITLE,
+                tvDevotionalTitle.getText().toString());
+
+        intent.putExtra(DevotionalDetailActivity.EXTRA_DATE,
+                tvDate.getText().toString());
+
+        // Hardcoded for now — swap with your real data model later
+        intent.putExtra(DevotionalDetailActivity.EXTRA_CATEGORY,  "Faith");
+        intent.putExtra(DevotionalDetailActivity.EXTRA_VERSE,
+                "\u201cFor we walk by faith, not by sight.\u201d");
+        intent.putExtra(DevotionalDetailActivity.EXTRA_REFERENCE, "2 Corinthians 5:7");
+        intent.putExtra(DevotionalDetailActivity.EXTRA_BODY,
+                "In our daily walk with God, we often find ourselves at crossroads "
+                        + "where the path ahead seems unclear...");
+
+        startActivity(intent);
+    }
+
 }

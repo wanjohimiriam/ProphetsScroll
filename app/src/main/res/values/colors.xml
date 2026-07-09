@@ -56,6 +56,9 @@
     <color name="icon_worship_tint">#AD1457</color>
     <color name="icon_notes_tint">#4527A0</color>
 
+    <!-- Bible accent -->
+    <color name="bible_accent">#B08D57</color>
+
     <!-- Badge: Active -->
     <color name="badge_active_bg">#E8F5E9</color>
     <color name="badge_active_text">#2E7D32</color>

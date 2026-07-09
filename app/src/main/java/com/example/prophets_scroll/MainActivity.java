@@ -15,6 +15,9 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.button.MaterialButton;
 
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -25,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
     private MaterialCardView cardDevotion, cardDevotionals, cardBible, cardWorship, cardNotes;
     private MaterialCardView cardVerseOfDay, cardFavorites, cardSearch;
     private TextView tvDate, tvDevotionalTitle, tvDevotionalVerse;
+    private TextView tvVerseText, tvVerseReference;
     private MaterialButton btnReadNow;
     private BottomNavigationView bottomNavigation;
 
@@ -49,6 +53,8 @@ public class MainActivity extends AppCompatActivity {
         tvDevotionalVerse = findViewById(R.id.tvDevotionalVerse);
         btnReadNow = findViewById(R.id.btnReadNow);
         cardVerseOfDay = findViewById(R.id.cardVerseOfDay);
+        tvVerseText = findViewById(R.id.tvVerseText);
+        tvVerseReference = findViewById(R.id.tvVerseReference);
         cardFavorites = findViewById(R.id.cardFavorites);
         cardSearch = findViewById(R.id.cardSearch);
         cardDevotionals = findViewById(R.id.cardDevotionals);
@@ -64,8 +70,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void loadTodaysDevotional() {
-        tvDevotionalTitle.setText("Walking in Faith");
-        tvDevotionalVerse.setText("For we walk by faith, not by sight...");
+        tvDevotionalTitle.setText("Pressing Forward Into New Dimensions");
+        tvDevotionalVerse.setText("\"Not that I have already attained, or am already perfected; but I press on...\"");
+        
+        // Populate verse of the day
+        tvVerseText.setText("\"Not that I have already attained, or am already perfected; but I press on, that I may lay hold of that for which Christ Jesus has also laid hold of me.\" \"Brethren, I do not count myself to have apprehended; but one thing I do, forgetting those things which are behind and reaching forward to those things which are ahead, I press toward the goal for the prize of the upward call of God in Christ Jesus.\"");
+        tvVerseReference.setText("Philippians 3:12-14 NKJV");
     }
 
     private void setupClickListeners() {
@@ -79,9 +89,8 @@ public class MainActivity extends AppCompatActivity {
         cardDevotion.setOnClickListener(v -> openDevotionalDetail());
         btnReadNow.setOnClickListener(v -> openDevotionalDetail());
 
-        // Verse of day → Bible (TODO)
-        cardVerseOfDay.setOnClickListener(v ->
-                Toast.makeText(this, "Opening Bible...", Toast.LENGTH_SHORT).show());
+        // Verse of day → Bible
+        cardVerseOfDay.setOnClickListener(v -> openBible());
 
         // Quick access
         cardSearch.setOnClickListener(v -> openSearch());
@@ -91,8 +100,7 @@ public class MainActivity extends AppCompatActivity {
         // Feature cards
         cardDevotionals.setOnClickListener(v -> openDevotionals());
 
-        cardBible.setOnClickListener(v ->
-                Toast.makeText(this, "Opening Bible...", Toast.LENGTH_SHORT).show());
+        cardBible.setOnClickListener(v -> openBible());
 
         cardWorship.setOnClickListener(v ->
                 Toast.makeText(this, "Worship Music — coming soon!", Toast.LENGTH_SHORT).show());
@@ -103,6 +111,10 @@ public class MainActivity extends AppCompatActivity {
 
     private void openDevotionals() {
         startActivity(new Intent(this, DevotionalsActivity.class));
+    }
+
+    private void openBible() {
+        startActivity(new Intent(this, com.example.prophets_scroll.bible.BibleReaderActivity.class));
     }
 
     private void openSearch() {
@@ -134,22 +146,32 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, DevotionalDetailActivity.class);
 
         // Pass today's devotional data as extras
-        intent.putExtra(DevotionalDetailActivity.EXTRA_TITLE,
-                tvDevotionalTitle.getText().toString());
-
-        intent.putExtra(DevotionalDetailActivity.EXTRA_DATE,
-                tvDate.getText().toString());
-
-        // Hardcoded for now — swap with your real data model later
-        intent.putExtra(DevotionalDetailActivity.EXTRA_CATEGORY,  "Faith");
+        intent.putExtra(DevotionalDetailActivity.EXTRA_TITLE, "Pressing Forward Into New Dimensions");
+        intent.putExtra(DevotionalDetailActivity.EXTRA_DATE, "Wednesday 1st July 2026");
+        intent.putExtra(DevotionalDetailActivity.EXTRA_CATEGORY, "Faith");
         intent.putExtra(DevotionalDetailActivity.EXTRA_VERSE,
-                "\u201cFor we walk by faith, not by sight.\u201d");
-        intent.putExtra(DevotionalDetailActivity.EXTRA_REFERENCE, "2 Corinthians 5:7");
-        intent.putExtra(DevotionalDetailActivity.EXTRA_BODY,
-                "In our daily walk with God, we often find ourselves at crossroads "
-                        + "where the path ahead seems unclear...");
+                "\"Not that I have already attained, or am already perfected; but I press on, that I may lay hold of that for which Christ Jesus has also laid hold of me.\" \"Brethren, I do not count myself to have apprehended; but one thing I do, forgetting those things which are behind and reaching forward to those things which are ahead, I press toward the goal for the prize of the upward call of God in Christ Jesus.\"");
+        intent.putExtra(DevotionalDetailActivity.EXTRA_REFERENCE, "Philippians 3:12-14 NKJV");
+        // Body will be loaded from raw file in DevotionalDetailActivity
 
         startActivity(intent);
+    }
+
+    private String loadDevotionalFromRaw() {
+        try {
+            InputStream inputStream = getResources().openRawResource(R.raw.devotional_july_1_2026);
+            BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+            StringBuilder text = new StringBuilder();
+            String line;
+            while ((line = reader.readLine()) != null) {
+                text.append(line).append("\n");
+            }
+            reader.close();
+            return text.toString().trim();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "Unable to load devotional content.";
+        }
     }
 
 }

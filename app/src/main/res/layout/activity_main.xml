@@ -5,22 +5,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/home_background"
+    android:background="@color/feature_card_bg"
     tools:context=".MainActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/home_background"
+        android:background="@color/feature_card_bg"
         app:elevation="0dp">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:paddingStart="8dp"
-            android:paddingEnd="8dp">
+            android:layout_height="80dp"
+            android:paddingStart="4dp"
+            android:paddingEnd="8dp"
+            android:paddingTop="32dp">
 
             <ImageButton
                 android:id="@+id/btnMenu"
@@ -167,15 +168,14 @@
                             android:layout_width="wrap_content"
                             android:layout_height="40dp"
                             android:layout_marginTop="14dp"
-                            android:backgroundTint="@android:color/transparent"
+                            android:backgroundTint="@color/gold_primary"
                             android:fontFamily="sans-serif-medium"
                             android:text="Read now →"
                             android:textAllCaps="false"
-                            android:textColor="@color/text_secondary"
+                            android:textColor="@android:color/white"
                             android:textSize="13sp"
                             app:cornerRadius="10dp"
-                            app:strokeColor="@color/card_border"
-                            app:strokeWidth="1dp" />
+                            app:strokeWidth="0dp" />
 
                     </LinearLayout>
 
@@ -215,10 +215,10 @@
                         android:id="@+id/tvVerseText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:fontFamily="sans-serif-light"
-                        android:lineSpacingExtra="4dp"
+                        android:fontFamily="sans-serif"
+                        android:lineSpacingExtra="6dp"
                         android:textColor="@color/text_white"
-                        android:textSize="15sp"
+                        android:textSize="16sp"
                         android:textStyle="italic"
                         tools:text="&quot;For I know the plans I have for you,&quot; declares the Lord, &quot;plans to prosper you and not to harm you, plans to give you hope and a future.&quot;" />
 
@@ -236,7 +236,7 @@
                             android:layout_weight="1"
                             android:fontFamily="sans-serif-medium"
                             android:textColor="@color/text_white"
-                            android:textSize="13sp"
+                            android:textSize="14sp"
                             tools:text="Jeremiah 29:11" />
 
                         <ImageView
@@ -704,7 +704,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        android:background="@color/feature_card_bg"
+        android:background="#FFFFFF"
         app:itemIconTint="@color/bottom_nav_tint"
         app:itemTextColor="@color/bottom_nav_tint"
         app:labelVisibilityMode="labeled"

@@ -23,7 +23,7 @@ public class DevotionalsActivity extends AppCompatActivity {
 
     // ── Views ──
     private Toolbar toolbar;
-    private ImageButton btnBack;
+    private ImageButton btnClose;
     private TextView tvResultCount;
 
     private MaterialCardView cardFilterSince, cardFilterLanguage, cardFilterCategory;
@@ -42,7 +42,7 @@ public class DevotionalsActivity extends AppCompatActivity {
     private String selectedLanguage = null;
     private String selectedCategory = null;
 
-    private ImageButton btnClose;
+//    private ImageButton btnClose;
 
     // ── Dropdown options ──
     private final String[] YEARS     = {"2020","2021","2022","2023","2024","2025","2026"};
@@ -77,7 +77,7 @@ public class DevotionalsActivity extends AppCompatActivity {
     // ─────────────────────────────────────────────
     private void initViews() {
         toolbar             = findViewById(R.id.toolbar);
-        btnBack             = findViewById(R.id.btnBack);
+        btnClose            = findViewById(R.id.btnClose);
         tvResultCount       = findViewById(R.id.tvResultCount);
         cardFilterSince     = findViewById(R.id.cardFilterSince);
         cardFilterLanguage  = findViewById(R.id.cardFilterLanguage);
@@ -101,7 +101,7 @@ public class DevotionalsActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         if (getSupportActionBar() != null)
             getSupportActionBar().setDisplayShowTitleEnabled(false);
-        btnBack.setOnClickListener(v -> finish());
+        btnClose.setOnClickListener(v -> finish());
     }
 
     // ─────────────────────────────────────────────

@@ -13,6 +13,10 @@ import androidx.appcompat.widget.Toolbar;
 import com.example.prophets_scroll.R;
 import com.google.android.material.imageview.ShapeableImageView;
 
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+
 public class DevotionalDetailActivity extends AppCompatActivity {
 
     // ── Intent keys (whoever starts this Activity must pass these) ──
@@ -32,8 +36,11 @@ public class DevotionalDetailActivity extends AppCompatActivity {
     private TextView tvCategory, tvDate;
     private TextView tvTitle, tvKeyVerse, tvVerseReference, tvBody;
 
+    private com.google.android.material.button.MaterialButton btnSave, btnComments;
+
     // ── State ──
     private boolean isFavourited = false;
+    private boolean isSaved = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +73,9 @@ public class DevotionalDetailActivity extends AppCompatActivity {
         tvKeyVerse         = findViewById(R.id.tvKeyVerse);
         tvVerseReference   = findViewById(R.id.tvVerseReference);
         tvBody             = findViewById(R.id.tvBody);
+
+        btnSave            = findViewById(R.id.btnSave);
+        btnComments        = findViewById(R.id.btnComments);
     }
 
     // ─────────────────────────────────────────────
@@ -93,19 +103,13 @@ public class DevotionalDetailActivity extends AppCompatActivity {
         String reference = intent.getStringExtra(EXTRA_REFERENCE);
         String body      = intent.getStringExtra(EXTRA_BODY);
 
-        // Fallbacks so screen never looks empty during development
-        if (title     == null) title     = "Walking in Faith Through Uncertain Times";
-        if (date      == null) date      = "May 25, 2026";
+        // Fallbacks with realistic devotional content
+        if (title     == null) title     = "Pressing Forward Into New Dimensions";
+        if (date      == null) date      = "Wednesday 1st July 2026";
         if (category  == null) category  = "Faith";
-        if (verse     == null) verse     = "\u201cFor we walk by faith, not by sight.\u201d";
-        if (reference == null) reference = "2 Corinthians 5:7";
-        if (body      == null) body      = "In our daily walk with God, we often find ourselves "
-                + "at crossroads where the path ahead seems unclear. The natural human response "
-                + "is to seek certainty, to demand visible proof before taking the next step. "
-                + "Yet, God calls us to something deeper\u2014a trust that transcends what our "
-                + "eyes can see.\n\nFaith is not the absence of doubt, nor is it blind optimism "
-                + "in the face of difficulty. Rather, it is the courageous choice to trust in "
-                + "God\u2019s character when His plan is not yet visible.";
+        if (verse     == null) verse     = "\"Not that I have already attained, or am already perfected; but I press on, that I may lay hold of that for which Christ Jesus has also laid hold of me.\" \"Brethren, I do not count myself to have apprehended; but one thing I do, forgetting those things which are behind and reaching forward to those things which are ahead, I press toward the goal for the prize of the upward call of God in Christ Jesus.\"";
+        if (reference == null) reference = "Philippians 3:12-14 NKJV";
+        if (body      == null) body      = loadDevotionalFromRaw();
 
         // Toolbar
         tvToolbarTitle.setText(title);
@@ -137,6 +141,12 @@ public class DevotionalDetailActivity extends AppCompatActivity {
         // More options (popup menu or bottom sheet — Toast for now)
         btnMore.setOnClickListener(v ->
                 Toast.makeText(this, "More options", Toast.LENGTH_SHORT).show());
+
+        // Save button
+        btnSave.setOnClickListener(v -> toggleSave());
+
+        // Comments button
+        btnComments.setOnClickListener(v -> openComments());
     }
 
     // ─────────────────────────────────────────────
@@ -176,7 +186,37 @@ public class DevotionalDetailActivity extends AppCompatActivity {
     }
 
     // ─────────────────────────────────────────────
-    //  7. BACK PRESS
+    //  7. SAVE TOGGLE
+    // ─────────────────────────────────────────────
+    private void toggleSave() {
+        isSaved = !isSaved;
+        if (isSaved) {
+            btnSave.setText("Saved");
+            btnSave.setIconResource(R.drawable.ic_favorite);
+            btnSave.setIconTint(android.content.res.ColorStateList.valueOf(getColor(R.color.error_red)));
+        } else {
+            btnSave.setText("Save");
+            btnSave.setIconResource(R.drawable.ic_favorite);
+            btnSave.setIconTint(android.content.res.ColorStateList.valueOf(getColor(R.color.text_hint)));
+        }
+    }
+
+    // ─────────────────────────────────────────────
+    //  8. OPEN COMMENTS
+    // ─────────────────────────────────────────────
+    private void openComments() {
+        Intent intent = new Intent(this, CommentsActivity.class);
+        intent.putExtra(CommentsActivity.EXTRA_DEVOTIONAL_TITLE,
+                tvTitle.getText().toString());
+        intent.putExtra(CommentsActivity.EXTRA_DEVOTIONAL_DATE,
+                tvDate.getText().toString());
+        intent.putExtra(CommentsActivity.EXTRA_DEVOTIONAL_CATEGORY,
+                tvCategory.getText().toString());
+        startActivity(intent);
+    }
+
+    // ─────────────────────────────────────────────
+    //  9. BACK PRESS
     // ─────────────────────────────────────────────
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -185,5 +225,25 @@ public class DevotionalDetailActivity extends AppCompatActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    // ─────────────────────────────────────────────
+    //  10. LOAD DEVOTIONAL FROM RAW TEXT FILE
+    // ─────────────────────────────────────────────
+    private String loadDevotionalFromRaw() {
+        try {
+            InputStream inputStream = getResources().openRawResource(R.raw.devotional_july_1_2026);
+            BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+            StringBuilder text = new StringBuilder();
+            String line;
+            while ((line = reader.readLine()) != null) {
+                text.append(line).append("\n");
+            }
+            reader.close();
+            return text.toString().trim();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "Unable to load devotional content.";
+        }
     }
 }

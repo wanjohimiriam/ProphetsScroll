@@ -5,22 +5,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/home_background">
+    android:background="@color/feature_card_bg"
+    android:fitsSystemWindows="true">
 
     <!-- TOP APP BAR -->
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/home_background"
-        app:elevation="0dp">
+        android:background="#FFFFFF"
+        app:elevation="2dp">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:paddingStart="4dp"
-            android:paddingEnd="4dp">
+            android:layout_height="70dp"
+            android:background="#FFFFFF"
+            android:paddingStart="0dp"
+            android:paddingTop="27dp"
+            android:paddingBottom="7dp"
+            android:paddingEnd="2dp">
 
             <!-- Back button -->
             <ImageButton
@@ -38,10 +42,10 @@
                 android:layout_width="36dp"
                 android:layout_height="36dp"
                 android:layout_marginStart="8dp"
+                android:contentDescription="Devotional image"
                 android:scaleType="centerCrop"
                 android:src="@drawable/devpage"
-                app:shapeAppearanceOverlay="@style/CircleImageStyle"
-                android:contentDescription="Devotional image" />
+                app:shapeAppearanceOverlay="@style/CircleImageStyle" />
 
             <!-- Title + subtitle stacked, takes remaining space -->
             <LinearLayout
@@ -55,9 +59,9 @@
                     android:id="@+id/tvToolbarTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:ellipsize="end"
                     android:fontFamily="sans-serif-medium"
                     android:maxLines="1"
-                    android:ellipsize="end"
                     android:textColor="@color/text_primary"
                     android:textSize="16sp"
                     tools:text="Walking in Faith" />
@@ -71,6 +75,18 @@
                     tools:text="May 25, 2026" />
 
             </LinearLayout>
+
+            <!-- More options -->
+
+            <ImageButton
+                android:id="@+id/btnMore"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="end"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="More options"
+                android:src="@drawable/ic_more_vert"
+                app:tint="@color/text_hint" />
 
             <!-- Favourite -->
             <ImageButton
@@ -94,16 +110,8 @@
                 android:src="@drawable/ic_share"
                 app:tint="@color/text_hint" />
 
-            <!-- More options -->
-            <ImageButton
-                android:id="@+id/btnMore"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_gravity="end"
-                android:background="?attr/selectableItemBackgroundBorderless"
-                android:contentDescription="More options"
-                android:src="@drawable/ic_more_vert"
-                app:tint="@color/text_hint" />
+
+
 
         </androidx.appcompat.widget.Toolbar>
 
@@ -124,7 +132,7 @@
             android:paddingStart="20dp"
             android:paddingEnd="20dp"
             android:paddingTop="8dp"
-            android:paddingBottom="40dp">
+            android:paddingBottom="100dp">
 
             <!-- CATEGORY CHIP + DATE ROW -->
             <LinearLayout
@@ -233,5 +241,64 @@
         </LinearLayout>
 
     </androidx.core.widget.NestedScrollView>
+
+    <!-- Bottom Actions Bar -->
+    <LinearLayout
+        android:id="@+id/layoutBottomActions"
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:layout_gravity="bottom"
+        android:background="@color/feature_card_bg"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        android:elevation="8dp">
+
+        <!-- Save button -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnSave"
+            android:layout_width="0dp"
+            android:layout_height="44dp"
+            android:layout_weight="1"
+            android:layout_marginEnd="8dp"
+            android:text="Save"
+            android:textAllCaps="false"
+            android:textSize="14sp"
+            android:fontFamily="sans-serif-medium"
+            android:textColor="@color/text_primary"
+            app:icon="@drawable/ic_favorite"
+            app:iconTint="@color/text_hint"
+            app:iconSize="18dp"
+            app:iconPadding="6dp"
+            app:cornerRadius="12dp"
+            app:strokeColor="@color/card_border"
+            app:strokeWidth="1dp"
+            android:backgroundTint="@color/feature_card_bg" />
+
+        <!-- Comments button -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnComments"
+            android:layout_width="0dp"
+            android:layout_height="44dp"
+            android:layout_weight="1"
+            android:layout_marginStart="8dp"
+            android:text="Comments (0)"
+            android:textAllCaps="false"
+            android:textSize="14sp"
+            android:fontFamily="sans-serif-medium"
+            android:textColor="@color/text_primary"
+            app:icon="@drawable/ic_comment"
+            app:iconTint="@color/text_hint"
+            app:iconSize="18dp"
+            app:iconPadding="6dp"
+            app:cornerRadius="12dp"
+            app:strokeColor="@color/card_border"
+            app:strokeWidth="1dp"
+            android:backgroundTint="@color/feature_card_bg" />
+
+    </LinearLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

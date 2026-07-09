@@ -66,6 +66,18 @@
             android:name=".home.DevotionalDetailActivity"
             android:theme="@style/Theme.Prophets_Scroll" />
 
+        <activity
+            android:name=".home.CommentsActivity"
+            android:theme="@style/Theme.Prophets_Scroll" />
+
+        <activity
+            android:name=".bible.BibleActivity"
+            android:theme="@style/Theme.Prophets_Scroll" />
+
+        <activity
+            android:name=".bible.BibleReaderActivity"
+            android:theme="@style/Theme.Prophets_Scroll" />
+
     </application>
 
 </manifest>

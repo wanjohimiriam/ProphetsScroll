@@ -139,4 +139,24 @@
     <string name="dialog_delete_message">This permanently deletes your account, streak, and saved favorites. This cannot be undone.</string>
     <string name="cancel">Cancel</string>
     <string name="save">Save</string>
+
+    <!-- Notes -->
+    <string name="notes_title">My Notes</string>
+    <string name="btn_add_note">Add new note</string>
+    <string name="btn_save_note">Save note</string>
+    <string name="btn_delete_note">Delete note</string>
+    <string name="hint_note_title">Title</string>
+    <string name="hint_note_content">Start typing your note…</string>
+    <string name="note_title_placeholder">Untitled Note</string>
+    <string name="note_content_placeholder">No content</string>
+    <string name="note_date_placeholder">Just now</string>
+    <string name="notes_empty_title">No notes yet</string>
+    <string name="notes_empty_subtitle">Tap the + button to create your first note</string>
+    <string name="cd_notes_empty">Empty notes illustration</string>
+    <string name="cd_note_icon">Note icon</string>
+    <string name="toast_note_saved">Note saved</string>
+    <string name="toast_note_deleted">Note deleted</string>
+    <string name="dialog_delete_note_title">Delete this note?</string>
+    <string name="dialog_delete_note_message">This cannot be undone.</string>
+    <string name="delete">Delete</string>
 </resources>

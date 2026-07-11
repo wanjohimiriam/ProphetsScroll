@@ -82,6 +82,18 @@
             android:name=".settings.SettingsActivity"
             android:theme="@style/Theme.Prophets_Scroll" />
 
+        <activity
+            android:name=".notes.NotesListActivity"
+            android:theme="@style/Theme.Prophets_Scroll" />
+
+        <activity
+            android:name=".notes.NoteEditorActivity"
+            android:theme="@style/Theme.Prophets_Scroll" />
+
+        <activity
+            android:name=".profile.ProfileActivity"
+            android:theme="@style/Theme.Prophets_Scroll" />
+
     </application>
 
 </manifest>

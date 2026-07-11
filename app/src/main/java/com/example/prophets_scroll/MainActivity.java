@@ -25,8 +25,8 @@ import java.util.Locale;
 public class MainActivity extends AppCompatActivity {
 
     private ImageButton btnMenu, btnNotification;
-    private MaterialCardView cardDevotion, cardDevotionals, cardBible, cardWorship, cardNotes;
-    private MaterialCardView cardVerseOfDay, cardFavorites, cardSearch;
+    private MaterialCardView cardDevotion, cardDevotionals, cardBible, cardDevotionalSongs, cardNotes;
+    private MaterialCardView cardVerseOfDay, cardFavorites, cardSearch, cardMorningCloudTV, cardApostolicConcordance;
     private TextView tvDate, tvDevotionalTitle, tvDevotionalVerse;
     private TextView tvVerseText, tvVerseReference;
     private MaterialButton btnReadNow;
@@ -59,8 +59,10 @@ public class MainActivity extends AppCompatActivity {
         cardSearch = findViewById(R.id.cardSearch);
         cardDevotionals = findViewById(R.id.cardDevotionals);
         cardBible = findViewById(R.id.cardBible);
-        cardWorship = findViewById(R.id.cardWorship);
+        cardDevotionalSongs = findViewById(R.id.cardDevotionalSongs);
         cardNotes = findViewById(R.id.cardNotes);
+        cardMorningCloudTV = findViewById(R.id.cardMorningCloudTV);
+        cardApostolicConcordance = findViewById(R.id.cardApostolicConcordance);
         bottomNavigation = findViewById(R.id.bottomNavigation);
     }
 
@@ -95,18 +97,24 @@ public class MainActivity extends AppCompatActivity {
         // Quick access
         cardSearch.setOnClickListener(v -> openSearch());
         cardFavorites.setOnClickListener(v ->
-                Toast.makeText(this, "Favorites — coming soon", Toast.LENGTH_SHORT).show());
+                startActivity(new Intent(this, com.example.prophets_scroll.favorites.FavoritesActivity.class)));
 
         // Feature cards
         cardDevotionals.setOnClickListener(v -> openDevotionals());
 
         cardBible.setOnClickListener(v -> openBible());
 
-        cardWorship.setOnClickListener(v ->
-                Toast.makeText(this, "Worship Music — coming soon!", Toast.LENGTH_SHORT).show());
+        cardDevotionalSongs.setOnClickListener(v ->
+                Toast.makeText(this, "Devotional Songs — coming soon!", Toast.LENGTH_SHORT).show());
 
         cardNotes.setOnClickListener(v ->
-                Toast.makeText(this, "Notes — coming soon!", Toast.LENGTH_SHORT).show());
+                startActivity(new Intent(this, com.example.prophets_scroll.notes.NotesListActivity.class)));
+
+        cardMorningCloudTV.setOnClickListener(v ->
+                startActivity(new Intent(this, com.example.prophets_scroll.streaming.MorningCloudTVActivity.class)));
+
+        cardApostolicConcordance.setOnClickListener(v ->
+                Toast.makeText(this, "Apostolic Concordance — coming soon!", Toast.LENGTH_SHORT).show());
     }
 
     private void openDevotionals() {
@@ -132,7 +140,7 @@ public class MainActivity extends AppCompatActivity {
                 openDevotionals();
                 return true;
             } else if (id == R.id.nav_favorites) {
-                Toast.makeText(this, "Favorites — coming soon", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(this, com.example.prophets_scroll.favorites.FavoritesActivity.class));
                 return true;
             } else if (id == R.id.nav_profile) {
                 Toast.makeText(this, "Profile — coming soon", Toast.LENGTH_SHORT).show();

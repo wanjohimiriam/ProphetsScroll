@@ -94,6 +94,15 @@
             android:name=".profile.ProfileActivity"
             android:theme="@style/Theme.Prophets_Scroll" />
 
+        <activity
+            android:name=".streaming.MorningCloudTVActivity"
+            android:theme="@style/Theme.Prophets_Scroll"
+            android:configChanges="orientation|screenSize|keyboardHidden" />
+
+        <activity
+            android:name=".favorites.FavoritesActivity"
+            android:theme="@style/Theme.Prophets_Scroll" />
+
     </application>
 
 </manifest>

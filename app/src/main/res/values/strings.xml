@@ -159,4 +159,30 @@
     <string name="dialog_delete_note_title">Delete this note?</string>
     <string name="dialog_delete_note_message">This cannot be undone.</string>
     <string name="delete">Delete</string>
+
+    <!-- Favorites -->
+    <string name="favorites_title">Favorites</string>
+    <string name="tab_devotionals">Devotionals</string>
+    <string name="tab_songs">Songs</string>
+    <string name="favorites_empty_title">No favorites yet</string>
+    <string name="favorites_empty_subtitle">Tap the heart icon to save your favorite content</string>
+    <string name="favorites_devotionals_empty">Mark devotionals as favorite to see them here</string>
+    <string name="favorites_songs_empty">Mark songs as favorite to see them here</string>
+    <string name="btn_remove_favorite">Remove from favorites</string>
+    <string name="btn_play_song">Play song</string>
+    <string name="toast_removed_from_favorites">Removed from favorites</string>
+    <string name="cd_favorites_empty">Empty favorites illustration</string>
+    <string name="cd_devotional_icon">Devotional icon</string>
+    <string name="cd_song_icon">Song icon</string>
+    <string name="devotional_title_placeholder">Devotional Title</string>
+    <string name="devotional_date_placeholder">July 1, 2026</string>
+    <string name="song_title_placeholder">Song Title</string>
+    <string name="song_artist_placeholder">Artist Name</string>
+    <string name="song_duration_placeholder">3:45</string>
+
+    <!-- Video Player -->
+    <string name="btn_play">Play</string>
+    <string name="btn_pause">Pause</string>
+    <string name="btn_pip">Picture-in-picture mode</string>
+    <string name="btn_fullscreen">Toggle fullscreen</string>
 </resources>

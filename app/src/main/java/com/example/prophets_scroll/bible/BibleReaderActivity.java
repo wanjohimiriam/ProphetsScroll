@@ -143,7 +143,7 @@ public class BibleReaderActivity extends AppCompatActivity {
         tvChapterNumber.setText(String.valueOf(currentChapter));
         btnSelectBook.setText(currentBookName);
         
-        ApiClient.getSimpleBibleApiService()
+        ApiClient.getBibleApiService()
                 .getSimpleBibleChapterVerses(translation, currentBookId, currentChapter)
                 .enqueue(new Callback<SimpleBibleChapterVersesResponse>() {
                     @Override

@@ -1,17 +1,18 @@
 package com.example.prophets_scroll.settings;
 
+import android.app.AlertDialog;
 import android.app.TimePickerDialog;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
 import com.example.prophets_scroll.R;
-import com.google.android.material.button.MaterialButton;
-import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.switchmaterial.SwitchMaterial;
 
 import java.util.Calendar;
@@ -26,11 +27,16 @@ public class SettingsActivity extends AppCompatActivity {
     private static final String KEY_FONT_SIZE = "font_size";
     private static final String KEY_DARK_MODE = "dark_mode";
 
+    // Order matters — index doubles as the "selected item" index for the dialog
+    private static final String[] FONT_SIZE_KEYS = {"small", "medium", "large"};
+    private static final String[] FONT_SIZE_LABELS = {"Small", "Medium", "Large"};
+
     private ImageButton btnBack;
     private SwitchMaterial switchDailyReminders, switchDarkMode;
-    private MaterialCardView cardReminderTime;
+    private LinearLayout itemReminderTime;
+    private LinearLayout itemFontSize;
     private TextView tvReminderTime;
-    private MaterialButton btnFontSmall, btnFontMedium, btnFontLarge;
+    private TextView tvFontSize;
 
     private SharedPreferences prefs;
     private int reminderHour = 8;
@@ -53,11 +59,13 @@ public class SettingsActivity extends AppCompatActivity {
         btnBack = findViewById(R.id.btnBack);
         switchDailyReminders = findViewById(R.id.switchDailyReminders);
         switchDarkMode = findViewById(R.id.switchDarkMode);
-        cardReminderTime = findViewById(R.id.cardReminderTime);
+
+        // These match the ids that actually exist in activity_settings.xml
+        itemReminderTime = findViewById(R.id.itemReminderTime);
         tvReminderTime = findViewById(R.id.tvReminderTime);
-        btnFontSmall = findViewById(R.id.btnFontSmall);
-        btnFontMedium = findViewById(R.id.btnFontMedium);
-        btnFontLarge = findViewById(R.id.btnFontLarge);
+
+        itemFontSize = findViewById(R.id.itemFontSize);
+        tvFontSize = findViewById(R.id.tvFontSize);
     }
 
     private void loadSettings() {
@@ -72,7 +80,7 @@ public class SettingsActivity extends AppCompatActivity {
 
         // Load font size
         currentFontSize = prefs.getString(KEY_FONT_SIZE, "medium");
-        updateFontSizeButtons();
+        updateFontSizeLabel();
 
         // Load dark mode
         boolean darkMode = prefs.getBoolean(KEY_DARK_MODE, false);
@@ -89,12 +97,10 @@ public class SettingsActivity extends AppCompatActivity {
         });
 
         // Reminder time picker
-        cardReminderTime.setOnClickListener(v -> showTimePickerDialog());
+        itemReminderTime.setOnClickListener(v -> showTimePickerDialog());
 
-        // Font size buttons
-        btnFontSmall.setOnClickListener(v -> setFontSize("small"));
-        btnFontMedium.setOnClickListener(v -> setFontSize("medium"));
-        btnFontLarge.setOnClickListener(v -> setFontSize("large"));
+        // Font size picker
+        itemFontSize.setOnClickListener(v -> showFontSizeDialog());
 
         // Dark mode switch
         switchDarkMode.setOnCheckedChangeListener((buttonView, isChecked) -> {
@@ -124,10 +130,6 @@ public class SettingsActivity extends AppCompatActivity {
     }
 
     private void updateReminderTimeDisplay() {
-        Calendar calendar = Calendar.getInstance();
-        calendar.set(Calendar.HOUR_OF_DAY, reminderHour);
-        calendar.set(Calendar.MINUTE, reminderMinute);
-
         int displayHour = reminderHour;
         String amPm = "AM";
 
@@ -141,49 +143,47 @@ public class SettingsActivity extends AppCompatActivity {
             displayHour = 12;
         }
 
-        String timeStr = String.format(Locale.getDefault(), "%02d:%02d %s", 
+        String timeStr = String.format(Locale.getDefault(), "%d:%02d %s",
                 displayHour, reminderMinute, amPm);
         tvReminderTime.setText(timeStr);
+    }
+
+    /**
+     * Shows a single-choice picker dialog — Small / Medium / Large — with the
+     * current size pre-selected, matching the "phone-style" settings pattern
+     * (pick one of a fixed set of sizes) rather than an inline button row.
+     */
+    private void showFontSizeDialog() {
+        int checkedIndex = indexOfFontSize(currentFontSize);
+
+        new AlertDialog.Builder(this)
+                .setTitle(R.string.font_size_dialog_title)
+                .setSingleChoiceItems(FONT_SIZE_LABELS, checkedIndex, (DialogInterface dialog, int which) -> {
+                    setFontSize(FONT_SIZE_KEYS[which]);
+                    dialog.dismiss();
+                })
+                .setNegativeButton(R.string.cancel, null)
+                .show();
+    }
+
+    private int indexOfFontSize(String key) {
+        for (int i = 0; i < FONT_SIZE_KEYS.length; i++) {
+            if (FONT_SIZE_KEYS[i].equals(key)) return i;
+        }
+        return 1; // default to Medium
     }
 
     private void setFontSize(String size) {
         currentFontSize = size;
         prefs.edit().putString(KEY_FONT_SIZE, size).apply();
-        updateFontSizeButtons();
-        // TODO: Apply font size to reading views
+        updateFontSizeLabel();
+        // TODO: Apply font size to reading views (e.g. via a scale factor
+        // read from these same prefs wherever devotional text is rendered)
     }
 
-    private void updateFontSizeButtons() {
-        // Reset all buttons to default style
-        resetFontButton(btnFontSmall);
-        resetFontButton(btnFontMedium);
-        resetFontButton(btnFontLarge);
-
-        // Highlight selected button
-        MaterialButton selectedButton;
-        switch (currentFontSize) {
-            case "small":
-                selectedButton = btnFontSmall;
-                break;
-            case "large":
-                selectedButton = btnFontLarge;
-                break;
-            default:
-                selectedButton = btnFontMedium;
-                break;
-        }
-
-        selectedButton.setBackgroundTintList(getColorStateList(R.color.gold_primary));
-        selectedButton.setTextColor(getColor(android.R.color.white));
-        selectedButton.setStrokeColor(getColorStateList(R.color.gold_primary));
-        selectedButton.setStrokeWidth(4);
-    }
-
-    private void resetFontButton(MaterialButton button) {
-        button.setBackgroundTintList(getColorStateList(R.color.feature_card_bg));
-        button.setTextColor(getColor(R.color.text_primary));
-        button.setStrokeColor(getColorStateList(R.color.card_border));
-        button.setStrokeWidth(2);
+    private void updateFontSizeLabel() {
+        int index = indexOfFontSize(currentFontSize);
+        tvFontSize.setText(FONT_SIZE_LABELS[index]);
     }
 
     private void applyDarkMode(boolean isDarkMode) {

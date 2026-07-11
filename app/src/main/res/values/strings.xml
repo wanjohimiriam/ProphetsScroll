@@ -127,6 +127,8 @@
     <string name="achievement_year_title">Year Journey</string>
     <string name="achievement_year_subtitle">365 devotionals</string>
 
+    <string name="font_size_dialog_title">Font Size</string>
+
     <string name="account_actions">Account Actions</string>
     <string name="sign_out">Sign Out</string>
     <string name="delete_account">Delete Account</string>

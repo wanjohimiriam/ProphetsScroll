@@ -115,4 +115,46 @@
     <!-- ICON BACKGROUNDS -->
     <color name="icon_bg_gold">#FDF8F3</color>
     <color name="border_tertiary">#1A000000</color>
+
+    <color name="profile_header_gradient_start">#7C6FF0</color>
+    <color name="profile_header_gradient_end">#9C4DCC</color>
+    <color name="profile_avatar_bg">#33FFFFFF</color>
+    <color name="profile_avatar_text">#FFFFFF</color>
+    <color name="profile_camera_badge_bg">#FFFFFF</color>
+    <color name="profile_camera_badge_icon">#5C4A2A</color>
+    <color name="profile_header_text">#FFFFFF</color>
+    <color name="profile_header_text_secondary">#D9FFFFFF</color>
+
+    <!-- "Your Journey" stat cards -->
+    <color name="stat_card_bg">#FFFFFF</color>
+    <color name="stat_card_border">#E8DCC8</color>
+    <color name="stat_streak_color">#3F8CFF</color>
+    <color name="stat_read_color">#4CAF50</color>
+    <color name="stat_favorites_color">#DAA520</color>
+
+    <!-- Account Information rows -->
+    <color name="row_item_bg">#FFFFFF</color>
+    <color name="row_item_border">#E8DCC8</color>
+    <color name="row_edit_icon">#8B7355</color>
+
+    <!-- Achievement wells -->
+    <color name="achievement_card_bg">#FFFFFF</color>
+    <color name="achievement_card_border">#E8DCC8</color>
+    <color name="achievement_gold_bg">#FFD700</color>
+    <color name="achievement_gold_icon">#5C4A2A</color>
+    <color name="achievement_purple_bg">#6C5CE7</color>
+    <color name="achievement_purple_icon">#FFFFFF</color>
+    <color name="achievement_locked_bg">#00000000</color>
+    <color name="achievement_locked_border">#8B7355</color>
+    <color name="achievement_locked_icon">#8B7355</color>
+    <color name="achievement_locked_text">#8B7355</color>
+
+    <!-- Account Action buttons -->
+    <color name="signout_button_bg">#FFFFFF</color>
+    <color name="signout_button_border">#E8DCC8</color>
+    <color name="signout_button_text">#2A1F0E</color>
+
+    <color name="delete_button_bg">#FBEAEA</color>
+    <color name="delete_button_text">#C13432</color>
+    <color name="delete_button_icon">#C13432</color>
 </resources>

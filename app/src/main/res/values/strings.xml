@@ -101,4 +101,40 @@
     <string name="cd_success_icon">Success icon</string>
     <string name="cd_category_icon">Category icon</string>
     <string name="cd_toggle_password_visibility">Toggle password visibility</string>
+
+    <string name="profile_title">Profile</string>
+    <string name="back">Back</string>
+    <string name="change_photo">Change profile photo</string>
+
+    <string name="your_journey">Your Journey</string>
+    <string name="days_streak">Days streak</string>
+    <string name="read">Read</string>
+    <string name="favorites">Favorites</string>
+
+    <string name="account_information">Account Information</string>
+    <string name="full_name">Full Name</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="edit_full_name">Edit full name</string>
+    <string name="edit_email">Edit email</string>
+    <string name="edit_password">Edit password</string>
+
+    <string name="achievements">Achievements</string>
+    <string name="achievement_streak_title">7-Day Streak</string>
+    <string name="achievement_unlocked">Unlocked</string>
+    <string name="achievement_bookworm_title">Bookworm</string>
+    <string name="achievement_bookworm_subtitle">100+ devotionals</string>
+    <string name="achievement_year_title">Year Journey</string>
+    <string name="achievement_year_subtitle">365 devotionals</string>
+
+    <string name="account_actions">Account Actions</string>
+    <string name="sign_out">Sign Out</string>
+    <string name="delete_account">Delete Account</string>
+
+    <string name="dialog_sign_out_title">Sign out?</string>
+    <string name="dialog_sign_out_message">You\'ll need to sign in again to access your devotionals and progress.</string>
+    <string name="dialog_delete_title">Delete account?</string>
+    <string name="dialog_delete_message">This permanently deletes your account, streak, and saved favorites. This cannot be undone.</string>
+    <string name="cancel">Cancel</string>
+    <string name="save">Save</string>
 </resources>

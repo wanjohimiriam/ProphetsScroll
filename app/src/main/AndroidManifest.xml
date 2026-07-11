@@ -78,6 +78,10 @@
             android:name=".bible.BibleReaderActivity"
             android:theme="@style/Theme.Prophets_Scroll" />
 
+        <activity
+            android:name=".settings.SettingsActivity"
+            android:theme="@style/Theme.Prophets_Scroll" />
+
     </application>
 
 </manifest>

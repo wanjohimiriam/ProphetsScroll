@@ -81,8 +81,7 @@ public interface ApiService {
     );
 
     // ==================== Simple Bible Verse Lookup (bible-api.com) ====================
-    // COMMENTED OUT - Replaced by YouVersion API
-    /*
+    
     /**
      * GET /data
      * Get all available translations from bible-api.com
@@ -134,18 +133,6 @@ public interface ApiService {
      */
     @GET("{reference}")
     Call<SimpleBibleVerseResponse> getSimpleVerse(@Path("reference") String reference);
-    */
-
-    // ==================== YouVersion API (api.youversion.com) ====================
-    
-    /**
-     * GET /bibles
-     * Get all available Bible translations from YouVersion
-     * Requires X-YouVersion-Developer-Token header
-     * Returns comprehensive list of translations with metadata
-     */
-    @GET("bibles")
-    Call<YouVersionBiblesResponse> getYouVersionBibles();
     
     // Note: Authentication endpoints (login, signup, googleAuth) will be added
     // once the corresponding model classes are created

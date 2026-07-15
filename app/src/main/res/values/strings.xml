@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Spiritual Hub</string>
+    <string name="app_name"> The Prophets Scroll</string>
 
     <!-- Onboarding/Welcome -->
     <string name="welcome_title">The Prophets Scroll</string>
@@ -181,6 +181,10 @@
     <string name="song_duration_placeholder">3:45</string>
 
     <!-- Video Player -->
+    <string name="morning_cloud_tv">Morning Cloud TV</string>
+    <string name="play_pause">Play/Pause</string>
+    <string name="picture_in_picture">Picture-in-picture mode</string>
+    <string name="toggle_fit_mode">Toggle fit mode</string>
     <string name="btn_play">Play</string>
     <string name="btn_pause">Pause</string>
     <string name="btn_pip">Picture-in-picture mode</string>

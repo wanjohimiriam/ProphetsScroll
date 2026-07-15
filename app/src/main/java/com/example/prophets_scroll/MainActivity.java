@@ -111,7 +111,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(this, com.example.prophets_scroll.notes.NotesListActivity.class)));
 
         cardMorningCloudTV.setOnClickListener(v ->
-                startActivity(new Intent(this, com.example.prophets_scroll.streaming.MorningCloudTVActivity.class)));
+                startActivity(new Intent(this, com.example.prophets_scroll.streaming.VideoPlayerActivity.class)));
 
         cardApostolicConcordance.setOnClickListener(v ->
                 Toast.makeText(this, "Apostolic Concordance — coming soon!", Toast.LENGTH_SHORT).show());

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Place at res/xml/network_security_config.xml, then reference it from
+    AndroidManifest.xml's <application> tag:
+        android:networkSecurityConfig="@xml/network_security_config"
+
+    SSL Labs confirms live2.nixsat.com's chain is missing TWO intermediates
+    (YR2 and Root YR) — see nixsat_chain_bundle_README.txt in res/raw/ for
+    exactly how to obtain and verify them, then save the concatenated
+    result as res/raw/nixsat_chain_bundle.pem.
+-->
+<network-security-config>
+    <domain-config>
+        <domain includeSubdomains="true">nixsat.com</domain>
+        <trust-anchors>
+            <!-- The two missing intermediates, bundled, PLUS system CAs so
+                 nothing else in the app is affected. -->
+            <certificates src="@raw/nixsat_chain_bundle" />
+            <certificates src="system" />
+        </trust-anchors>
+    </domain-config>
+</network-security-config>

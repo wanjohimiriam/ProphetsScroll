@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- LANDSCAPE: video fills the whole screen -->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000000">
+
+    <androidx.media3.ui.PlayerView
+        android:id="@+id/playerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:controller_layout_id="@layout/custom_player_controls"
+        app:show_buffering="when_playing"
+        app:use_controller="true"
+        app:resize_mode="fit"
+        app:surface_type="surface_view" />
+
+    <ImageButton
+        android:id="@+id/btnBack"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_gravity="top|start"
+        android:layout_margin="12dp"
+        android:background="@drawable/bg_camera_badge"
+        android:backgroundTint="#66000000"
+        android:contentDescription="Back"
+        android:padding="8dp"
+        android:src="@drawable/ic_baseline_arrow_back_24"
+        app:tint="#FFFFFF" />
+
+    <ImageButton
+        android:id="@+id/btnRefresh"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_gravity="top|end"
+        android:layout_margin="12dp"
+        android:background="@drawable/bg_camera_badge"
+        android:backgroundTint="#66000000"
+        android:contentDescription="Reload stream"
+        android:padding="8dp"
+        android:src="@drawable/ic_player_refresh"
+        app:tint="#FFFFFF" />
+
+</FrameLayout>

@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Custom controller layout for androidx.media3.ui.PlayerView.
+    Wire it up with:  app:controller_layout_id="@layout/custom_player_controls"
+    on your <androidx.media3.ui.PlayerView> in the hosting activity layout.
+
+    exo_play / exo_pause / exo_position / exo_duration / exo_progress are the
+    standard Media3 ids — PlayerView finds them automatically and wires play,
+    pause, seeking, and the live position/duration text with zero extra code.
+
+    btnPip / btnFitToggle are NOT standard ids — wire their click listeners
+    manually in your Activity (see note below).
+-->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Soft scrim so the white text/icons stay readable over bright video -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="140dp"
+        android:layout_gravity="bottom"
+        android:background="@drawable/bg_player_controls_scrim" />
+
+    <LinearLayout
+        android:id="@+id/controlsBottomBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:orientation="vertical"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:paddingBottom="28dp">
+
+        <!-- Time + scrubber row -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@id/exo_position"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:includeFontPadding="false"
+                android:text="00:00"
+                android:textColor="#FFFFFF"
+                android:textSize="13sp" />
+
+            <androidx.media3.ui.DefaultTimeBar
+                android:id="@id/exo_progress"
+                android:layout_width="0dp"
+                android:layout_height="24dp"
+                android:layout_weight="1"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                app:bar_height="3dp"
+                app:touch_target_height="24dp"
+                app:played_color="#E24B4A"
+                app:unplayed_color="#4DFFFFFF"
+                app:buffered_color="#80FFFFFF"
+                app:scrubber_color="#E24B4A"
+                app:scrubber_enabled_size="12dp"
+                app:scrubber_disabled_size="0dp" />
+
+            <TextView
+                android:id="@id/exo_duration"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:includeFontPadding="false"
+                android:text="00:00"
+                android:textColor="#FFFFFF"
+                android:textSize="13sp" />
+        </LinearLayout>
+
+        <!-- Icon row: play/pause, PIP, fit — left aligned, flat, no background -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <FrameLayout
+                android:layout_width="44dp"
+                android:layout_height="44dp">
+
+                <ImageButton
+                    android:id="@id/exo_play"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:contentDescription="Play"
+                    android:padding="10dp"
+                    android:src="@drawable/ic_player_play" />
+
+                <ImageButton
+                    android:id="@id/exo_pause"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:contentDescription="Pause"
+                    android:padding="10dp"
+                    android:src="@drawable/ic_player_pause" />
+            </FrameLayout>
+
+            <ImageButton
+                android:id="@+id/btnPip"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:layout_marginStart="4dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="Picture in picture"
+                android:padding="12dp"
+                android:src="@drawable/ic_player_pip" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1" />
+
+            <ImageButton
+                android:id="@+id/btnFitToggle"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="Fit to screen"
+                android:padding="12dp"
+                android:src="@drawable/ic_player_fit" />
+        </LinearLayout>
+    </LinearLayout>
+</FrameLayout>

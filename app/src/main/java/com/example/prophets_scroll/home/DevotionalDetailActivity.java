@@ -19,28 +19,33 @@ import java.io.InputStreamReader;
 
 public class DevotionalDetailActivity extends AppCompatActivity {
 
-    // ── Intent keys (whoever starts this Activity must pass these) ──
-    public static final String EXTRA_TITLE     = "extra_title";
+    // -- Intent keys --
+    // NOTE: EXTRA_TITLE removed on purpose. The verse itself is now the
+    // first thing a reader sees -- a scripture reference doesn't spoil
+    // anything the way a paraphrased title does. EXTRA_ID is new, useful
+    // for favourites/comments/analytics keying without leaning on a title.
+    public static final String EXTRA_ID        = "extra_id";
     public static final String EXTRA_DATE      = "extra_date";
     public static final String EXTRA_CATEGORY  = "extra_category";
     public static final String EXTRA_VERSE     = "extra_verse";
     public static final String EXTRA_REFERENCE = "extra_reference";
     public static final String EXTRA_BODY      = "extra_body";
 
-    // ── Views ──
+    // -- Views --
     private Toolbar toolbar;
     private ShapeableImageView ivDevotionalThumb;
     private TextView tvToolbarTitle, tvToolbarSubtitle;
     private ImageButton btnBack, btnFavourite, btnShare, btnMore;
 
     private TextView tvCategory, tvDate;
-    private TextView tvTitle, tvKeyVerse, tvVerseReference, tvBody;
+    private TextView tvKeyVerse, tvVerseReference, tvBody;
 
     private com.google.android.material.button.MaterialButton btnSave, btnComments;
 
-    // ── State ──
+    // -- State --
     private boolean isFavourited = false;
     private boolean isSaved = false;
+    private String devotionalId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,9 +58,9 @@ public class DevotionalDetailActivity extends AppCompatActivity {
         setupClickListeners();
     }
 
-    // ─────────────────────────────────────────────
+    // -----------------------------------------------
     //  1. INIT
-    // ─────────────────────────────────────────────
+    // -----------------------------------------------
     private void initViews() {
         toolbar            = findViewById(R.id.toolbar);
         ivDevotionalThumb  = findViewById(R.id.ivDevotionalThumb);
@@ -69,7 +74,8 @@ public class DevotionalDetailActivity extends AppCompatActivity {
 
         tvCategory         = findViewById(R.id.tvCategory);
         tvDate             = findViewById(R.id.tvDate);
-        tvTitle            = findViewById(R.id.tvTitle);
+        // tvTitle removed -- R.id.tvTitle can be deleted from
+        // activity_devotional_detail.xml, or repurposed; see note below.
         tvKeyVerse         = findViewById(R.id.tvKeyVerse);
         tvVerseReference   = findViewById(R.id.tvVerseReference);
         tvBody             = findViewById(R.id.tvBody);
@@ -78,80 +84,72 @@ public class DevotionalDetailActivity extends AppCompatActivity {
         btnComments        = findViewById(R.id.btnComments);
     }
 
-    // ─────────────────────────────────────────────
+    // -----------------------------------------------
     //  2. TOOLBAR
-    // ─────────────────────────────────────────────
+    // -----------------------------------------------
     private void setupToolbar() {
         setSupportActionBar(toolbar);
-        // We handle the back button manually so hide the default one
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayShowTitleEnabled(false);
         }
     }
 
-    // ─────────────────────────────────────────────
+    // -----------------------------------------------
     //  3. POPULATE from Intent extras
-    //     Falls back to placeholder text if nothing passed
-    // ─────────────────────────────────────────────
+    //     Falls back to placeholder content if nothing passed
+    //     (e.g. when this Activity is opened directly, not via the list)
+    // -----------------------------------------------
     private void populateContent() {
         Intent intent = getIntent();
 
-        String title     = intent.getStringExtra(EXTRA_TITLE);
-        String date      = intent.getStringExtra(EXTRA_DATE);
-        String category  = intent.getStringExtra(EXTRA_CATEGORY);
-        String verse     = intent.getStringExtra(EXTRA_VERSE);
-        String reference = intent.getStringExtra(EXTRA_REFERENCE);
-        String body      = intent.getStringExtra(EXTRA_BODY);
+        devotionalId      = intent.getStringExtra(EXTRA_ID);
+        String date       = intent.getStringExtra(EXTRA_DATE);
+        String category   = intent.getStringExtra(EXTRA_CATEGORY);
+        String verse       = intent.getStringExtra(EXTRA_VERSE);
+        String reference   = intent.getStringExtra(EXTRA_REFERENCE);
+        String body         = intent.getStringExtra(EXTRA_BODY);
 
-        // Fallbacks with realistic devotional content
-        if (title     == null) title     = "Pressing Forward Into New Dimensions";
         if (date      == null) date      = "Wednesday 1st July 2026";
         if (category  == null) category  = "Faith";
         if (verse     == null) verse     = "\"Not that I have already attained, or am already perfected; but I press on, that I may lay hold of that for which Christ Jesus has also laid hold of me.\" \"Brethren, I do not count myself to have apprehended; but one thing I do, forgetting those things which are behind and reaching forward to those things which are ahead, I press toward the goal for the prize of the upward call of God in Christ Jesus.\"";
         if (reference == null) reference = "Philippians 3:12-14 NKJV";
         if (body      == null) body      = loadDevotionalFromRaw();
 
-        // Toolbar
-        tvToolbarTitle.setText(title);
+        // Toolbar -- category replaces the old title slot, date stays as subtitle
+        tvToolbarTitle.setText(category);
         tvToolbarSubtitle.setText(date);
 
-        // Body
+        // Body -- category chip + date only. The verse callout is
+        // intentionally hidden: the devotional's own body text already
+        // opens with the scripture, so showing it a second time here is
+        // redundant. tvKeyVerse/tvVerseReference are still POPULATED
+        // (not left empty) even though hidden, since shareDevotional()
+        // still reads their text for the share sheet.
         tvCategory.setText(category);
         tvDate.setText(date);
-        tvTitle.setText(title);
         tvKeyVerse.setText(verse);
+        tvKeyVerse.setVisibility(android.view.View.GONE);
         tvVerseReference.setText(reference);
+        tvVerseReference.setVisibility(android.view.View.GONE);
         tvBody.setText(body);
     }
 
-    // ─────────────────────────────────────────────
+    // -----------------------------------------------
     //  4. CLICK LISTENERS
-    // ─────────────────────────────────────────────
+    // -----------------------------------------------
     private void setupClickListeners() {
-
-        // Back
         btnBack.setOnClickListener(v -> onBackPressed());
-
-        // Favourite toggle
         btnFavourite.setOnClickListener(v -> toggleFavourite());
-
-        // Share
         btnShare.setOnClickListener(v -> shareDevotional());
-
-        // More options (popup menu or bottom sheet — Toast for now)
         btnMore.setOnClickListener(v ->
                 Toast.makeText(this, "More options", Toast.LENGTH_SHORT).show());
-
-        // Save button
         btnSave.setOnClickListener(v -> toggleSave());
-
-        // Comments button
         btnComments.setOnClickListener(v -> openComments());
     }
 
-    // ─────────────────────────────────────────────
+    // -----------------------------------------------
     //  5. FAVOURITE TOGGLE
-    // ─────────────────────────────────────────────
+    // -----------------------------------------------
     private void toggleFavourite() {
         isFavourited = !isFavourited;
 
@@ -168,15 +166,16 @@ public class DevotionalDetailActivity extends AppCompatActivity {
         }
     }
 
-    // ─────────────────────────────────────────────
+    // -----------------------------------------------
     //  6. SHARE
-    // ─────────────────────────────────────────────
+    //     Leads with the verse + reference instead of a title --
+    //     scripture is naturally shareable and isn't a spoiler.
+    // -----------------------------------------------
     private void shareDevotional() {
-        String title     = tvTitle.getText().toString();
         String verse     = tvKeyVerse.getText().toString();
         String reference = tvVerseReference.getText().toString();
 
-        String shareText = title + "\n\n" + verse + "\n\u2014 " + reference
+        String shareText = verse + "\n\u2014 " + reference
                 + "\n\nShared via Prophets Scroll";
 
         Intent shareIntent = new Intent(Intent.ACTION_SEND);
@@ -185,9 +184,9 @@ public class DevotionalDetailActivity extends AppCompatActivity {
         startActivity(Intent.createChooser(shareIntent, "Share devotional via"));
     }
 
-    // ─────────────────────────────────────────────
+    // -----------------------------------------------
     //  7. SAVE TOGGLE
-    // ─────────────────────────────────────────────
+    // -----------------------------------------------
     private void toggleSave() {
         isSaved = !isSaved;
         if (isSaved) {
@@ -201,13 +200,18 @@ public class DevotionalDetailActivity extends AppCompatActivity {
         }
     }
 
-    // ─────────────────────────────────────────────
+    // -----------------------------------------------
     //  8. OPEN COMMENTS
-    // ─────────────────────────────────────────────
+    //     NOTE: CommentsActivity's extra key is still named
+    //     EXTRA_DEVOTIONAL_TITLE (its own source wasn't shared with me,
+    //     so I'm not renaming that key blind) -- but the VALUE passed is
+    //     now the category, not a spoiler title. Rename the key on
+    //     CommentsActivity's side too when convenient.
+    // -----------------------------------------------
     private void openComments() {
         Intent intent = new Intent(this, CommentsActivity.class);
         intent.putExtra(CommentsActivity.EXTRA_DEVOTIONAL_TITLE,
-                tvTitle.getText().toString());
+                tvCategory.getText().toString());
         intent.putExtra(CommentsActivity.EXTRA_DEVOTIONAL_DATE,
                 tvDate.getText().toString());
         intent.putExtra(CommentsActivity.EXTRA_DEVOTIONAL_CATEGORY,
@@ -215,9 +219,9 @@ public class DevotionalDetailActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    // ─────────────────────────────────────────────
+    // -----------------------------------------------
     //  9. BACK PRESS
-    // ─────────────────────────────────────────────
+    // -----------------------------------------------
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
@@ -227,9 +231,11 @@ public class DevotionalDetailActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    // ─────────────────────────────────────────────
-    //  10. LOAD DEVOTIONAL FROM RAW TEXT FILE
-    // ─────────────────────────────────────────────
+    // -----------------------------------------------
+    //  10. LOAD DEVOTIONAL FROM RAW TEXT FILE (fallback only --
+    //      normal flow passes body via EXTRA_BODY from the list screen,
+    //      which already read it via RawTextReader)
+    // -----------------------------------------------
     private String loadDevotionalFromRaw() {
         try {
             InputStream inputStream = getResources().openRawResource(R.raw.devotional_july_1_2026);

@@ -8,6 +8,9 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.prophets_scroll.models.devotionals.Devotional;
+import com.example.prophets_scroll.home.DevotionalRepository;
+import com.example.prophets_scroll.home.RawTextReader;
 import com.example.prophets_scroll.home.DevotionalDetailActivity;
 import com.example.prophets_scroll.home.DevotionalsActivity;
 import com.example.prophets_scroll.home.SearchActivity;
@@ -15,11 +18,9 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.button.MaterialButton;
 
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
@@ -32,6 +33,12 @@ public class MainActivity extends AppCompatActivity {
     private MaterialButton btnReadNow;
     private BottomNavigationView bottomNavigation;
 
+    // Resolved once in onCreate so both the devotional card AND the
+    // "Verse of the Day" card read from the SAME source -- no more two
+    // independently hardcoded copies of the same verse to keep in sync.
+    private Devotional todaysDevotional;
+    private RawTextReader.ScripturePreview todaysScripture;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
 
         initViews();
         setTodayDate();
+        resolveTodaysDevotional();
         loadTodaysDevotional();
         setupClickListeners();
         setupBottomNavigation();
@@ -71,13 +79,56 @@ public class MainActivity extends AppCompatActivity {
         tvDate.setText(sdf.format(new Date()));
     }
 
+    /**
+     * TEMPORARY: pinned to July 5's devotional specifically.
+     *
+     * july_1 (your own hand-pasted file) doesn't follow the
+     * "TODAY'S DEVOTIONAL (date)" + quoted-verse structure
+     * RawTextReader.parseOpeningScripture() looks for, so it wasn't
+     * producing a usable verse. july_2 onward use that structure and
+     * parse cleanly -- picking july_5 here just needed ONE working example
+     * to show on the home screen while more real daily entries get added.
+     *
+     * Once there's real day-by-day coverage (and july_1 either gets
+     * reformatted or its own verse set explicitly), swap this back to
+     * matching today's actual date -- see the dated-match version this
+     * replaced, in git history / earlier in this conversation.
+     */
+    private void resolveTodaysDevotional() {
+        todaysDevotional = DevotionalRepository.getById("devotional_july_5_2026");
+        if (todaysDevotional == null) {
+            List<Devotional> all = DevotionalRepository.getAll();
+            if (!all.isEmpty()) todaysDevotional = all.get(0);
+        }
+
+        if (todaysDevotional != null) {
+            String body = RawTextReader.read(this, todaysDevotional.getContentRawRes());
+            todaysScripture = RawTextReader.parseOpeningScripture(body);
+        }
+    }
+
     private void loadTodaysDevotional() {
-        tvDevotionalTitle.setText("Pressing Forward Into New Dimensions");
-        tvDevotionalVerse.setText("\"Not that I have already attained, or am already perfected; but I press on...\"");
-        
-        // Populate verse of the day
-        tvVerseText.setText("\"Not that I have already attained, or am already perfected; but I press on, that I may lay hold of that for which Christ Jesus has also laid hold of me.\" \"Brethren, I do not count myself to have apprehended; but one thing I do, forgetting those things which are behind and reaching forward to those things which are ahead, I press toward the goal for the prize of the upward call of God in Christ Jesus.\"");
-        tvVerseReference.setText("Philippians 3:12-14 NKJV");
+        if (todaysDevotional == null || todaysScripture == null) {
+            // No devotionals in the repository at all -- shouldn't happen
+            // once DevotionalRepository is populated, but don't crash.
+            tvDevotionalTitle.setText("");
+            tvDevotionalVerse.setText("");
+            tvVerseText.setText("");
+            tvVerseReference.setText("");
+            return;
+        }
+
+        // tvDevotionalTitle shows CATEGORY, not a title -- see
+        // DevotionalRepository's class comment for why there's no title
+        // anywhere in this pipeline.
+        tvDevotionalTitle.setText(todaysDevotional.getCategory());
+        tvDevotionalVerse.setText(todaysScripture.verseText);
+
+        // "Verse of the Day" card -- same extraction, same source, so it's
+        // never out of sync with what the devotional itself actually says.
+        tvVerseText.setText(todaysScripture.verseText);
+        tvVerseReference.setText(
+                todaysScripture.reference != null ? todaysScripture.reference : "");
     }
 
     private void setupClickListeners() {
@@ -87,25 +138,21 @@ public class MainActivity extends AppCompatActivity {
         btnNotification.setOnClickListener(v ->
                 Toast.makeText(this, "Notifications", Toast.LENGTH_SHORT).show());
 
-        // Devotional card → Devotionals list
         cardDevotion.setOnClickListener(v -> openDevotionalDetail());
         btnReadNow.setOnClickListener(v -> openDevotionalDetail());
 
-        // Verse of day → Bible
         cardVerseOfDay.setOnClickListener(v -> openBible());
 
-        // Quick access
         cardSearch.setOnClickListener(v -> openSearch());
         cardFavorites.setOnClickListener(v ->
                 startActivity(new Intent(this, com.example.prophets_scroll.favorites.FavoritesActivity.class)));
 
-        // Feature cards
         cardDevotionals.setOnClickListener(v -> openDevotionals());
 
         cardBible.setOnClickListener(v -> openBible());
 
         cardDevotionalSongs.setOnClickListener(v ->
-                Toast.makeText(this, "Devotional Songs — coming soon!", Toast.LENGTH_SHORT).show());
+                Toast.makeText(this, "Devotional Songs \u2014 coming soon!", Toast.LENGTH_SHORT).show());
 
         cardNotes.setOnClickListener(v ->
                 startActivity(new Intent(this, com.example.prophets_scroll.notes.NotesListActivity.class)));
@@ -114,7 +161,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(this, com.example.prophets_scroll.streaming.VideoPlayerActivity.class)));
 
         cardApostolicConcordance.setOnClickListener(v ->
-                Toast.makeText(this, "Apostolic Concordance — coming soon!", Toast.LENGTH_SHORT).show());
+                Toast.makeText(this, "Apostolic Concordance \u2014 coming soon!", Toast.LENGTH_SHORT).show());
     }
 
     private void openDevotionals() {
@@ -143,7 +190,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(this, com.example.prophets_scroll.favorites.FavoritesActivity.class));
                 return true;
             } else if (id == R.id.nav_profile) {
-                Toast.makeText(this, "Profile — coming soon", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Profile \u2014 coming soon", Toast.LENGTH_SHORT).show();
                 return true;
             }
             return false;
@@ -151,35 +198,20 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void openDevotionalDetail() {
-        Intent intent = new Intent(this, DevotionalDetailActivity.class);
+        if (todaysDevotional == null || todaysScripture == null) return;
 
-        // Pass today's devotional data as extras
-        intent.putExtra(DevotionalDetailActivity.EXTRA_TITLE, "Pressing Forward Into New Dimensions");
-        intent.putExtra(DevotionalDetailActivity.EXTRA_DATE, "Wednesday 1st July 2026");
-        intent.putExtra(DevotionalDetailActivity.EXTRA_CATEGORY, "Faith");
-        intent.putExtra(DevotionalDetailActivity.EXTRA_VERSE,
-                "\"Not that I have already attained, or am already perfected; but I press on, that I may lay hold of that for which Christ Jesus has also laid hold of me.\" \"Brethren, I do not count myself to have apprehended; but one thing I do, forgetting those things which are behind and reaching forward to those things which are ahead, I press toward the goal for the prize of the upward call of God in Christ Jesus.\"");
-        intent.putExtra(DevotionalDetailActivity.EXTRA_REFERENCE, "Philippians 3:12-14 NKJV");
-        // Body will be loaded from raw file in DevotionalDetailActivity
+        Intent intent = new Intent(this, DevotionalDetailActivity.class);
+        // FIX: was EXTRA_TITLE, which no longer exists on DevotionalDetailActivity
+        // (renamed to EXTRA_ID when the title field was dropped project-wide).
+        intent.putExtra(DevotionalDetailActivity.EXTRA_ID, todaysDevotional.getId());
+        intent.putExtra(DevotionalDetailActivity.EXTRA_DATE, todaysDevotional.getDayLabel());
+        intent.putExtra(DevotionalDetailActivity.EXTRA_CATEGORY, todaysDevotional.getCategory());
+        intent.putExtra(DevotionalDetailActivity.EXTRA_VERSE, todaysScripture.verseText);
+        intent.putExtra(DevotionalDetailActivity.EXTRA_REFERENCE,
+                todaysScripture.reference != null ? todaysScripture.reference : "");
+        intent.putExtra(DevotionalDetailActivity.EXTRA_BODY,
+                RawTextReader.read(this, todaysDevotional.getContentRawRes()));
 
         startActivity(intent);
     }
-
-    private String loadDevotionalFromRaw() {
-        try {
-            InputStream inputStream = getResources().openRawResource(R.raw.devotional_july_1_2026);
-            BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
-            StringBuilder text = new StringBuilder();
-            String line;
-            while ((line = reader.readLine()) != null) {
-                text.append(line).append("\n");
-            }
-            reader.close();
-            return text.toString().trim();
-        } catch (Exception e) {
-            e.printStackTrace();
-            return "Unable to load devotional content.";
-        }
-    }
-
 }

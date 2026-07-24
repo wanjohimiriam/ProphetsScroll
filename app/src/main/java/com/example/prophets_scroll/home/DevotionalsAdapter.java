@@ -45,8 +45,13 @@ public class DevotionalsAdapter extends RecyclerView.Adapter<DevotionalsAdapter.
         DevotionalsActivity.DevotionalItem item = items.get(position);
         holder.tvCategory.setText(item.category);
         holder.tvDate.setText(item.date);
-        // TODO: load real thumbnail via Glide/Picasso using item.imageUrl
-        // Glide.with(holder.ivThumbnail).load(item.imageUrl).into(holder.ivThumbnail);
+
+        // Local drawable resources (dev1..dev7), not remote URLs -- no
+        // Glide/network fetch needed, just bind the resource id directly.
+        if (item.imageRes != 0) {
+            holder.ivThumbnail.setImageResource(item.imageRes);
+        }
+
         holder.itemView.setOnClickListener(v -> listener.onClick(item));
     }
 
